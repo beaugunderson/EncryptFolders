@@ -1,0 +1,10 @@
+﻿<Window x:Class="EncryptFolders.Windows.AutomaticCloseDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Encryption Finished" Height="173" Width="316" Loaded="Window_Loaded" WindowStartupLocation="CenterOwner" ResizeMode="NoResize" ShowInTaskbar="False">
+    <Grid>
+        <Button Content="Close (15)" Margin="0,0,12,12" Name="closeButton" HorizontalAlignment="Right" Width="81" Height="23" VerticalAlignment="Bottom" IsDefault="True" Click="closeButton_Click" />
+        <Button Content="Cancel" Height="23" HorizontalAlignment="Right" Margin="0,0,99,12" Name="cancelButton" VerticalAlignment="Bottom" Width="60" IsCancel="True" Click="cancelButton_Click" />
+        <TextBlock Margin="12,12,12,41" Name="textBlock1" Text="Encryption of your files and folders was successful. The program will now close automatically unless you choose &quot;Cancel&quot;." TextWrapping="Wrap" />
+    </Grid>
+</Window>

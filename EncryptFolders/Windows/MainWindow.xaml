@@ -1,0 +1,53 @@
+﻿<Window x:Class="EncryptFolders.Windows.MainWindow"
+        x:Name="Window"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Windows="clr-namespace:EncryptFolders.Windows"
+        xmlns:wpf="clr-namespace:EncryptFolders.WPF"
+        mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance Windows:MainWindowDesignInstance, IsDesignTimeCreatable=True}"
+        DataContext="{Binding RelativeSource={RelativeSource Self}}"
+        Title="Encryption Manager"
+        Height="480"
+        Width="640"
+        WindowStartupLocation="CenterScreen"
+        Background="{DynamicResource {x:Static SystemColors.ControlLightBrushKey}}"
+        Loaded="Window_Loaded" 
+        Closing="Window_Closing" WindowState="Minimized" ShowInTaskbar="False">
+    <Window.Resources>
+        <wpf:TextBlockConverter x:Key="TextBlockConverter" />
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Label Content="{Binding Path=CurrentDirectory, Converter={StaticResource TextBlockConverter}, ConverterParameter=Current Directory}" Margin="12,12,12,0" Grid.Row="0" />
+
+        <Label Content="{Binding Path=CurrentFile, Converter={StaticResource TextBlockConverter}, ConverterParameter=Current File}" Margin="12,0,12,0" Grid.Row="1" />
+
+        <StackPanel Orientation="Horizontal" Margin="12,0,12,0" Grid.Row="2">
+            <Label Content="{Binding Path=Encrypted, Converter={StaticResource TextBlockConverter}, ConverterParameter=Encrypted}" />
+            <Label Content="{Binding Path=Skipped, Converter={StaticResource TextBlockConverter}, ConverterParameter=Skipped}" />
+            <Label Content="{Binding Path=Ignored, Converter={StaticResource TextBlockConverter}, ConverterParameter=Ignored}" />
+            <Label Content="{Binding Path=Errors, Converter={StaticResource TextBlockConverter}, ConverterParameter=Errors}" />
+        </StackPanel>
+
+        <RichTextBox Margin="12,6,12,12" Name="OutputRichTextBox" FontFamily="Consolas" VerticalScrollBarVisibility="Auto" SelectionBrush="#FFEE3224" IsReadOnly="True" AcceptsReturn="False" Grid.Row="3">
+            <FlowDocument>
+                <FlowDocument.Resources>
+                    <!-- This style is used to set the margins for all paragraphs in the FlowDocument to 0. -->
+                    <Style TargetType="{x:Type Paragraph}">
+                        <Setter Property="Margin" Value="0"/>
+                    </Style>
+                </FlowDocument.Resources>
+            </FlowDocument>
+        </RichTextBox>
+    </Grid>
+</Window>
